@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Abfahrtstabellen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #00205B;
+      font-family: 'Saira Condensed', sans-serif;
+      color: white;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .letter {
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .link {
+      font-size: 1.3rem;
+      margin-left: 1rem;
+      color: white;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Abfahrtstabellen</h1>
+  <div id="content"></div>
+
+  <script>
+    const links = {
+      "Airolo Bahnhof": "https://example.com/airolo",
+      "Bellinzona Zentrum": "https://example.com/bellinzona",
+      "Chiasso Terminal": "https://example.com/chiasso",
+      "Domodossola Altstadt": "https://example.com/domodossola",
+      "Zürich HB": "https://example.com/zurich",
+      "Bern Wankdorf": "https://example.com/bern",
+      "Lugano See": "https://example.com/lugano",
+      "Genf Flughafen": "https://example.com/genf"
+    };
+
+    const contentDiv = document.getElementById("content");
+
+    for (let i = 65; i <= 90; i++) {
+      const letter = String.fromCharCode(i);
+      const matchingLinks = Object.entries(links).filter(([text, url]) =>
+        text.toUpperCase().startsWith(letter)
+      );
+
+      const letterElem = document.createElement("p");
+      letterElem.className = "letter";
+      letterElem.textContent = letter;
+      contentDiv.appendChild(letterElem);
+
+      if (matchingLinks.length > 0) {
+        matchingLinks.forEach(([text, url]) => {
+          const linkElem = document.createElement("a");
+          linkElem.href = url;
+          linkElem.className = "link";
+          linkElem.textContent = text;
+          linkElem.target = "_blank";
+          contentDiv.appendChild(linkElem);
+        });
+      }
+    }
+  </script>
+</body>
+</html>
